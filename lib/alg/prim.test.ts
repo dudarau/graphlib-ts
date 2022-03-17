@@ -16,7 +16,7 @@ describe('alg.prim', function () {
     source.setNode('a');
 
     const g = prim(source, weightFn(source));
-    expect(g.nodes()).to.eql(['a']);
+    expect(g.nodes()).toEqual(['a']);
     expect(g.edgeCount()).to.equal(0);
   });
 
@@ -32,11 +32,11 @@ describe('alg.prim', function () {
     source.setEdge('d', 'e', 1);
 
     const g = prim(source, weightFn(source));
-    expect(lodash.sortBy(g.neighbors('a'))).to.eql(['b']);
-    expect(lodash.sortBy(g.neighbors('b'))).to.eql(['a', 'c', 'd']);
-    expect(lodash.sortBy(g.neighbors('c'))).to.eql(['b']);
-    expect(lodash.sortBy(g.neighbors('d'))).to.eql(['b', 'e']);
-    expect(lodash.sortBy(g.neighbors('e'))).to.eql(['d']);
+    expect(lodash.sortBy(g.neighbors('a'))).toEqual(['b']);
+    expect(lodash.sortBy(g.neighbors('b'))).toEqual(['a', 'c', 'd']);
+    expect(lodash.sortBy(g.neighbors('c'))).toEqual(['b']);
+    expect(lodash.sortBy(g.neighbors('d'))).toEqual(['b', 'e']);
+    expect(lodash.sortBy(g.neighbors('e'))).toEqual(['d']);
   });
 
   it('throws an Error for unconnected graphs', function () {

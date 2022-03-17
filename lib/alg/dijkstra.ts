@@ -1,22 +1,22 @@
 import lodash from '../lodash';
-import PriorityQueue from '../data/priority-queue';
+import { PriorityQueue } from '../data/priority-queue';
 import {Graph} from "../graph";
 
 const DEFAULT_WEIGHT_FUNC = lodash.constant(1);
 
-export function dijkstra(g: Graph, source: any, weightFn: any, edgeFn:any) {
+export function dijkstra(g: Graph, source: any, weightFn?: any, edgeFn?:any) {
   return runDijkstra(
     g,
     String(source),
     weightFn || DEFAULT_WEIGHT_FUNC,
     edgeFn ||
-      function (v) {
+      function (v: any) {
         return g.outEdges(v);
       },
   );
 }
 
-function runDijkstra(g: Graph, source, weightFn, edgeFn) {
+function runDijkstra(g: Graph, source?: any, weightFn?: any, edgeFn?: any) {
   const results = {};
   const pq = new PriorityQueue();
   let v: any, vEntry: any;

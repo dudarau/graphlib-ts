@@ -101,6 +101,8 @@ export class Graph<T = {}>{
 
   _edgeCount = 0;
 
+  _nodeCount = 0;
+
   private get _isDirected() {
     return lodash.has(this._opt, 'directed') ? !!this._opt.directed : true;
   }
@@ -166,7 +168,7 @@ export class Graph<T = {}>{
   //   // todo
   // };
 
-  edge(outNodeName: string, inNodeName: string, name?: string): GraphEdge {
+  edge(outNodeName: string, inNodeName?: string, name?: string): GraphEdge {
     const e =
         arguments.length === 1
             ? edgeObjToId(this._isDirected, arguments[0])
@@ -239,6 +241,24 @@ export class Graph<T = {}>{
     }
     return this;
   };
+  nodeEdges(v: any, w: any): any {
+    const inEdges = this.inEdges(v, w);
+    if (inEdges) {
+      return inEdges.concat(this.outEdges(v, w));
+    }
+  };
+  setPath(vs: any, value?: any): any {
+    const args = arguments;
+    lodash.reduce(vs, (v, w) => {
+      if (args.length > 1) {
+        this.setEdge(v, w, value);
+      } else {
+        this.setEdge(v, w);
+      }
+      return w;
+    });
+    return this;
+  };
   // setDefaultEdgeLabel(
   //     callback: string | ((v: string, w: string, name?: string) => string | Label),
   // ): Graph<T> => {
@@ -248,8 +268,10 @@ export class Graph<T = {}>{
   //   this._defaultEdgeLabelFn = newDefault;
   //   return this;
   // };
-  setEdge(params: Edge, value?: string | { [key: string]: any }): Graph<T> {
-    let v, w, name, value;
+  // @ts-ignore
+  setEdge(params: Edge | string, _value?: string | { [key: string]: any }): Graph<T> {
+    let v, w, name;
+    let value = _value;
     let valueSpecified = false;
     let arg0 = arguments[0];
 

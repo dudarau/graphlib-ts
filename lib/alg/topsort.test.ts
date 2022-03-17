@@ -10,7 +10,7 @@ describe("alg.topsort", function() {
   it("sorts nodes such that earlier nodes have directed edges to later nodes", function() {
     const g = new Graph();
     g.setPath(["b", "c", "a"]);
-    expect(topsort(g)).to.eql(["b", "c", "a"]);
+    expect(topsort(g)).toEqual(["b", "c", "a"]);
   });
 
   it("works for a diamond", function() {

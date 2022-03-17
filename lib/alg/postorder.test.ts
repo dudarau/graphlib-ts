@@ -6,7 +6,7 @@ describe("alg.postorder", function() {
   it("returns the root for a singleton graph", function() {
     const g = new Graph();
     g.setNode("a");
-    expect(postorder(g, "a")).to.eql(["a"]);
+    expect(postorder(g, "a")).toEqual(["a"]);
   });
 
   it("visits each node in the graph once", function() {
@@ -15,7 +15,7 @@ describe("alg.postorder", function() {
     g.setPath(["a", "c", "d", "e"]);
 
     const nodes = postorder(g, "a");
-    expect(lodash.sortBy(nodes)).to.eql(["a", "b", "c", "d", "e"]);
+    expect(lodash.sortBy(nodes)).toEqual(["a", "b", "c", "d", "e"]);
   });
 
   it("works for a tree", function() {
@@ -25,7 +25,7 @@ describe("alg.postorder", function() {
     g.setEdge("c", "e");
 
     const nodes = postorder(g, "a");
-    expect(lodash.sortBy(nodes)).to.eql(["a", "b", "c", "d", "e"]);
+    expect(lodash.sortBy(nodes)).toEqual(["a", "b", "c", "d", "e"]);
     expect(nodes.indexOf("b")).to.be.lt(nodes.indexOf("a"));
     expect(nodes.indexOf("c")).to.be.lt(nodes.indexOf("a"));
     expect(nodes.indexOf("d")).to.be.lt(nodes.indexOf("c"));
@@ -40,7 +40,7 @@ describe("alg.postorder", function() {
     g.setNode("f");
 
     const nodes = postorder(g, ["a", "b", "c", "e"]);
-    expect(lodash.sortBy(nodes)).to.eql(["a", "b", "c", "d", "e"]);
+    expect(lodash.sortBy(nodes)).toEqual(["a", "b", "c", "d", "e"]);
     expect(nodes.indexOf("b")).to.be.lt(nodes.indexOf("a"));
     expect(nodes.indexOf("d")).to.be.lt(nodes.indexOf("c"));
   });
@@ -52,7 +52,7 @@ describe("alg.postorder", function() {
     g.setEdge("d", "c");
 
     const nodes = postorder(g, ["a", "d"]);
-    expect(lodash.sortBy(nodes)).to.eql(["a", "b", "c", "d"]);
+    expect(lodash.sortBy(nodes)).toEqual(["a", "b", "c", "d"]);
     expect(nodes.indexOf("b")).to.be.lt(nodes.indexOf("a"));
     expect(nodes.indexOf("c")).to.be.lt(nodes.indexOf("a"));
     expect(nodes.indexOf("c")).to.be.lt(nodes.indexOf("d"));

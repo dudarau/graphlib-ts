@@ -1,6 +1,5 @@
-const expect from "../chai").expect;
-const Graph from "../..").Graph;
-const isAcyclic from "../..").alg.isAcyclic;
+import { Graph } from "../graph";
+import { isAcyclic } from "./is-acyclic";
 
 describe("alg.isAcyclic", function() {
   it("returns true if the graph has no cycles", function() {
